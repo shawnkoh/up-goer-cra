@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import * as mqtt from "mqtt";
@@ -7,26 +7,22 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const HOST = "ws://xinming.ddns.net";
-const client = mqtt.connect(HOST, {
-  username: "guest",
-  password: process.env.SERVER_PASSWORD,
-});
-
-client.on("connect", function () {
-  client.subscribe("presence", function (err) {
-    if (!err) {
-      client.publish("presence", "Hello mqtt");
-    }
-  });
-});
-
-client.on("message", function (topic, message) {
-  // message is Buffer
-  console.log(message.toString());
-  client.end();
-});
 
 const App = () => {
+  const [connectionStatus, setConnectionStatus] = React.useState(false);
+  const [messages, setMessages] = React.useState<string[]>([]);
+
+  useEffect(() => {
+    const client = mqtt.connect(HOST, {
+      username: "guest",
+      password: process.env.SERVER_PASSWORD,
+    });
+    client.on("connect", () => setConnectionStatus(true));
+    client.on("message", (topic, payload, packet) => {
+      setMessages(messages.concat(payload.toString()));
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
