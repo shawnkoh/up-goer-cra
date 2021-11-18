@@ -2,6 +2,9 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import * as mqtt from "mqtt";
+import * as dotenv from "dotenv"
+
+dotenv.config()
 
 const client = mqtt.connect("mqtt://test.mosquitto.org");
 
