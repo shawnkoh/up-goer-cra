@@ -2,11 +2,15 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import * as mqtt from "mqtt";
-import * as dotenv from "dotenv"
+import * as dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-const client = mqtt.connect("mqtt://test.mosquitto.org");
+const HOST = "ws://xinming.ddns.net";
+const client = mqtt.connect(HOST, {
+  username: "guest",
+  password: process.env.SERVER_PASSWORD,
+});
 
 client.on("connect", function () {
   client.subscribe("presence", function (err) {
