@@ -5,13 +5,10 @@ import Active from "./Active";
 import * as R from "ramda";
 import { ClassifyingData, PredictingData, Prediction } from "./data";
 import Two from "two.js";
+import Card from "./Card";
+import { PREDICT_TOPIC, CLASSIFY_TOPIC } from "./server";
 
 dotenv.config();
-
-const HOST = "ws://xinming.ddns.net:9001";
-const PREDICT_TOPIC = "posture/predict";
-const CLASSIFY_TOPIC = "posture/classify";
-
 const App = () => {
   const [connectionStatus, setConnectionStatus] = React.useState(false);
   const [predictingDatas, setPredictingDatas] = React.useState<
@@ -80,7 +77,7 @@ const App = () => {
     });
   }, []);
 
-  return <Active />;
+  return <Card />;
 };
 
 const Indicator: React.FC<PredictingData> = (data: PredictingData) => {
