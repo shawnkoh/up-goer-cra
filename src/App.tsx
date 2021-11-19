@@ -80,8 +80,4 @@ const App = () => {
   return <Card />;
 };
 
-const Indicator: React.FC<PredictingData> = (data: PredictingData) => {
-  return <>isGood(data)</>;
-};
-
 export default App;
