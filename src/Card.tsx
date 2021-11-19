@@ -10,7 +10,7 @@ export interface ProperCardProps {
 }
 export const ProperCard = ({ classifier, predicter }: ProperCardProps) => {
   return (
-    <div className="bg-blue-500 flex h-80 p-8">
+    <div className="flex h-80 p-8">
       {predicter.prediction == Prediction.GOOD ? (
         <div className="bg-green-500 shadow rounded-lg flex-grow">
           <div className="px-4 py-5 sm:p-6" />
@@ -66,9 +66,21 @@ export const Card: React.FC = () => {
   }, []);
 
   return !!classifier && !!predicter ? (
-    <div h-screen>
+    <div className="justify-center h-screen">
+      {/* <div className="grid grid-flow-col auto-cols-max h-screen"> */}
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+              Take control of your posture.
+            </p>
+          </div>
+        </div>
+      </div>
       <ProperCard {...{ classifier, predicter }} />
-      <Anime {...{ classifier, predicter }} />
+      <div className="flex flex-grow mx-auto justify-center">
+        <Anime {...{ classifier, predicter }} />
+      </div>
     </div>
   ) : (
     <Active />
