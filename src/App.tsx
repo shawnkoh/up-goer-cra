@@ -6,7 +6,8 @@ import * as R from "ramda";
 import { ClassifyingData, PredictingData, Prediction } from "./data";
 import Two from "two.js";
 import Card from "./Card";
-import { PREDICT_TOPIC, CLASSIFY_TOPIC } from "./server";
+import { PREDICT_TOPIC, CLASSIFY_TOPIC, HOST } from "./server";
+import Anime from "./Anime";
 
 dotenv.config();
 const App = () => {

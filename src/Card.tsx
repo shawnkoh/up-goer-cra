@@ -3,6 +3,7 @@ import { Prediction, PredictingData, ClassifyingData } from "./data";
 import * as mqtt from "mqtt";
 import { CLASSIFY_TOPIC, connectToServer, PREDICT_TOPIC } from "./server";
 import Active from "./Active";
+import Anime from "./Anime";
 
 export interface ProperCardProps {
   classifier: ClassifyingData;
@@ -24,7 +25,7 @@ export const ProperCard = ({ classifier, predicter }: ProperCardProps) => {
   );
 };
 
-const Card: React.FC = () => {
+export const Card: React.FC = () => {
   const [connectionStatus, setConnectionStatus] = React.useState(false);
   const [predicter, setPredicter] = React.useState<PredictingData | null>(null);
   const [classifier, setClassifier] = React.useState<ClassifyingData | null>(
@@ -66,7 +67,10 @@ const Card: React.FC = () => {
   }, []);
 
   return !!classifier && !!predicter ? (
-    <ProperCard {...{ classifier, predicter }} />
+    <div>
+      {/* <ProperCard {...{ classifier, predicter }} /> */}
+      <Anime {...{ classifier, predicter }} />
+    </div>
   ) : (
     <Active />
   );
