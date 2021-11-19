@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Prediction, PredictingData, ClassifyingData } from "./data";
-import * as mqtt from "mqtt";
 import { CLASSIFY_TOPIC, connectToServer, PREDICT_TOPIC } from "./server";
 import Active from "./Active";
 import Anime from "./Anime";
@@ -11,14 +10,14 @@ export interface ProperCardProps {
 }
 export const ProperCard = ({ classifier, predicter }: ProperCardProps) => {
   return (
-    <div className="bg-blue-500 flex h-screen">
+    <div className="bg-blue-500 flex h-80 p-8">
       {predicter.prediction == Prediction.GOOD ? (
         <div className="bg-green-500 shadow rounded-lg flex-grow">
-          <div className="px-4 py-5 sm:p-6">good</div>
+          <div className="px-4 py-5 sm:p-6" />
         </div>
       ) : (
         <div className="bg-red-500 shadow rounded-lg flex-grow">
-          <div className="px-4 py-5 sm:p-6">bad</div>
+          <div className="px-4 py-5 sm:p-6" />
         </div>
       )}
     </div>
@@ -67,8 +66,8 @@ export const Card: React.FC = () => {
   }, []);
 
   return !!classifier && !!predicter ? (
-    <div>
-      {/* <ProperCard {...{ classifier, predicter }} /> */}
+    <div h-screen>
+      <ProperCard {...{ classifier, predicter }} />
       <Anime {...{ classifier, predicter }} />
     </div>
   ) : (
