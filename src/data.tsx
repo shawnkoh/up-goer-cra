@@ -1,3 +1,7 @@
+interface ClassifyingData {
+  data: number[];
+  id: string;
+}
 interface PredictingData {
   id: string;
   prediction: Prediction;
@@ -15,4 +19,5 @@ enum Mock {
   MOCKED = 1,
 }
 
-export type { PredictingData };
+export { Prediction };
+export type { ClassifyingData, PredictingData };
