@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import * as mqtt from "mqtt";
 import * as dotenv from "dotenv";
-import Active from "./Active";
-import * as R from "ramda";
-import { ClassifyingData, PredictingData, Prediction } from "./data";
+import { ClassifyingData, PredictingData } from "./data";
 import Two from "two.js";
 import Card from "./Card";
 import { PREDICT_TOPIC, CLASSIFY_TOPIC, HOST } from "./server";
-import Anime from "./Anime";
 
 dotenv.config();
 const App = () => {
